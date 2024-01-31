@@ -1,4 +1,31 @@
+import torch
+import numpy as np
+import gluonnlp as nlp
+
+from kobert import get_tokenizer
+from kobert import get_pytorch_kobert_model
+
+from BERTData import BERTDataset, BERTClassifier
+
+## parameter 설정
+max_len = 64  # max seqence length
+batch_size = 64
+warmup_ratio = 0.1
+num_epochs = 5
+max_grad_norm = 1
+log_interval = 200
+learning_rate = 5e-5
+
 def predict(predict_sentence):
+    device = torch.device("cuda")
+
+    learning_rate = 5e-5
+
+    bertmodel, vocab = get_pytorch_kobert_model()
+    tokenizer = get_tokenizer()
+    tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
+    model = BERTClassifier(bertmodel, dr_rate=0.5).to(device)
+
     data = [predict_sentence, 0]
     dataset_another = [data]
 
