@@ -1,0 +1,7 @@
+# Ignore compiled Python files
+
+
+# Ignore virtual environment directory
+.cache
+content
+/KoBERT

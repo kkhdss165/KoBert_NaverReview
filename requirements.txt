@@ -1,0 +1,8 @@
+numpy == 1.16.6
+boto3 ==1.15.18
+gluonnlp == 0.8.0
+mxnet == 1.6.0
+onnxruntime == 1.8.0
+sentencepiece ==0.1.96
+torch == 1.10.0
+transformers == 4.1.0
