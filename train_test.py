@@ -20,7 +20,9 @@ from kobert import get_pytorch_kobert_model
 
 from tqdm import tqdm
 
+from BERTData import BERTDataset, BERTClassifier
 
+import warnings
 
 
 def changeTo01(x):
@@ -42,7 +44,7 @@ def calc_accuracy(X, Y):
 def main():
   device = torch.device("cuda")
 
-  print(device)
+  # print(device)
 
   data = pd.read_csv("./content/naverReview.csv")
 
@@ -57,8 +59,6 @@ def main():
     data.append(review)
     data.append(label)
     data_list.append(data)
-
-  len(data_list)
 
   # 학습데이터 : 테스트데이터 비율을 4 : 1로
   train, test = train_test_split(data_list, test_size=0.2, shuffle=True, random_state=0)
@@ -76,8 +76,8 @@ def main():
   tokenizer = get_tokenizer()
   tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
 
-  print(tok.vocab)
-  print(vocab)
+  # print(tok.vocab)
+  # print(vocab)
 
   ## DataLoader
   train_dataset = BERTDataset(train, 0, 1, tok, max_len, True, False)
